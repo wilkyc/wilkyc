@@ -9,11 +9,13 @@ I build AI tools that take repetitive work off marketing and operations teams. M
 ## 🚀 Featured Project
 
 ### [AI-Driven Business Operations & Marketing Intelligence Suite](https://github.com/wilkyc/whatsapp-sentiment-ai)
-Two systems built on Gemini and used in real daily operations.
+Two systems built on Gemini and used in real daily operations: a real-time WhatsApp AI ops assistant, and a community sentiment & NLP batch pipeline.
 
-* **🤖 WhatsApp AI Operations Assistant.** Non-technical staff ask questions in WhatsApp. The assistant queries the database with safe read-only Text-to-SQL, reads images and documents, runs sentiment analysis, and sends back CSV files and email reports. [▶️ Watch the 2-min demo](https://github.com/wilkyc/whatsapp-sentiment-ai#-demo-video-213)
-* **📊 Community Sentiment & NLP Pipeline.** A batch job, triggered manually, that turns raw WhatsApp group chats into brand-level sentiment data for 35 brand and sub-brand columns, feeding dashboards and negative-sentiment alerts.
-* **🔁 Self-improving keyword loop.** A separate AI agent connected to the team's workspace and database reviews the pipeline's output, finds missed or wrong matches, and updates the keyword sheet. The next run picks up the new rules. That loop helped lift **program sentiment accuracy** to about **90–95%** (brand-level sentiment is classified by the pipeline program; the keyword loop improves the inputs that feed it).
+* **⏱️ Hourly ops + negative alerts.** The sentiment pipeline runs about hourly via an external timer calling GitHub Actions `workflow_dispatch` (no GitHub `schedule`). Negative (N) labels can notify owners over WhatsApp or email so PR can adjust quickly.
+* **📊 Live Google Sheets board.** Fixed dashboards cover discussion volume, positive / negative / inquiry mix, and activity.
+* **🧵 Dialogue id.** Related messages in a thread share one dialogue id, so a review pass can read the whole conversation at once instead of isolated lines.
+* **🔁 Keyword loop + program sentiment.** A separate AI agent reviews pipeline output, finds missed or wrong keyword matches, and updates the keyword sheet for the next run. Measurement has two layers: **hit rate** (keyword — did we catch the in-scope conversations?) and **accuracy** (program — I/N/P brand sentiment). Sentiment is classified by the pipeline program; the keyword loop improves the inputs that feed it. After human review of ~787 labels and multi-round tuning of keywords and the program on the same-day data, **program sentiment accuracy** is about **90–95%** (e.g. 6 errors in a 74-label sample). Production data lands in Supabase as well as Sheets.
+
 * **Impact:** daily data processing cut from 2–3 hours to about 15 minutes; teams get answers without writing a single query.
 
 *I designed and wrote all the application code. The company provided the WhatsApp message intake channel for the assistant, and the data collection layer and underlying message database for the pipeline.*
