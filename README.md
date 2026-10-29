@@ -13,7 +13,7 @@ Two systems built on Gemini and used in real daily operations.
 
 * **🤖 WhatsApp AI Operations Assistant.** Non-technical staff ask questions in WhatsApp. The assistant queries the database with safe read-only Text-to-SQL, reads images and documents, runs sentiment analysis, and sends back CSV files and email reports. [▶️ Watch the 2-min demo](https://github.com/wilkyc/whatsapp-sentiment-ai#-demo-video-213)
 * **📊 Community Sentiment & NLP Pipeline.** A batch job, triggered manually, that turns raw WhatsApp group chats into brand-level sentiment data for 35 brand and sub-brand columns, feeding dashboards and negative-sentiment alerts.
-* **🔁 Self-improving keyword loop.** A separate AI agent connected to the team's workspace and database reviews the pipeline's output, finds missed or wrong matches, and updates the keyword sheet. The next run picks up the new rules, so accuracy keeps improving without manual tuning.
+* **🔁 Self-improving keyword loop.** A separate AI agent connected to the team's workspace and database reviews the pipeline's output, finds missed or wrong matches, and updates the keyword sheet. The next run picks up the new rules. That loop helped lift **program sentiment accuracy** to about **90–95%** (brand-level sentiment is classified by the pipeline program; the keyword loop improves the inputs that feed it).
 * **Impact:** daily data processing cut from 2–3 hours to about 15 minutes; teams get answers without writing a single query.
 
 *I designed and wrote all the application code. The company provided the WhatsApp message intake channel for the assistant, and the data collection layer and underlying message database for the pipeline.*
